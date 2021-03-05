@@ -20,6 +20,8 @@ username = os.getenv('POSTGRESQL_username')
 
 password = os.getenv('POSTGRESQL_password')
 
+emailApi = os.getenv('SENDGRID_KEY')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -84,7 +86,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': 'ivytutoring',
+        # 'USER': username,
+        # 'PASSWORD': password,
+        # 'HOST': 'localhost',
+        # 'PORT': '',
     }
 }
 
@@ -126,3 +133,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey' 
+EMAIL_HOST_PASSWORD = emailApi
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
