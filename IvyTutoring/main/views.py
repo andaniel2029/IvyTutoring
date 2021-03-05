@@ -28,7 +28,7 @@ def addGroup(user):
 
 def ContactUs(request):
 	sender = os.getenv('SENDER_EMAIL')
-	receiver = "cr355@njit.edu" # Or Melissa's Email
+	receiver = os.getenv('RECEIVER_EMAIL')
 	if request.method == 'POST':
 		form = contactForm(request.POST)
 		if form.is_valid():
